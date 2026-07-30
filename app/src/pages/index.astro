@@ -1,0 +1,26 @@
+---
+import BaseHead from "@/components/base-head.astro";
+import type { Route } from "@/types";
+import { ROUTES, SITE } from "@/consts";
+---
+
+<html lang="en">
+	<head>
+		<BaseHead />
+	</head>
+	<body style="font-family: var(--font-baumans);">
+		<!-- TODO QUE SEA MARKDOWN INYECTADO -->
+		 <!-- TODO Cambiar estilos a Tailwind -->
+		<h1>My own site!</h1>
+		<h3>{SITE.DESCRIPTION}</h3>
+		<p>Page still in construction!</p>
+		<img src="/gifs/penguin-drill.gif" alt="Penguin drill" height="200">
+		<p>Sites:</p>
+
+		<!-- Sites -->
+		{ROUTES.map((r: Route) => (
+			<a href={r.URL} style="margin-right: 1rem;">{r.TITLE}</a>
+		))}
+
+	</body>
+</html>

@@ -1,0 +1,12 @@
+---
+import { SITE } from "@/consts";
+
+interface HeaderProps {
+   section: string 
+}
+
+const { section } = Astro.props as HeaderProps;
+---
+<header>
+    <h2><a href="/">{SITE.URL}</a>/{section}</h2>
+</header>

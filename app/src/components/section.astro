@@ -1,0 +1,14 @@
+---
+import type { Route } from "@/types";
+
+interface SectionProps {
+    route: Route
+}
+
+const { route } = Astro.props as SectionProps;
+--- 
+<div style="display: flex; align-items: center; gap: 1rem;">
+    <img src={route.ICON} alt={route.TITLE} height="50" width="50" />
+    <h1>{route.TITLE}</h1>
+    <p>{route.DESCRIPTION}</p>
+</div>

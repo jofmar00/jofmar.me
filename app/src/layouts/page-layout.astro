@@ -1,0 +1,29 @@
+---
+import BaseHead from "@/components/base-head.astro";
+import Footer from "@/components/footer.astro";
+import Header from "@/components/header.astro";
+import Section from "@/components/section.astro";
+import { ROUTES } from "@/consts";
+
+interface Props {
+    route: string;
+}
+
+const { route } = Astro.props as Props;
+const currentRoute = ROUTES.find((r) => r.URL === route );
+if (!currentRoute) {
+    throw new Error(`Route ${route} not found in ROUTES`);
+}
+---
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <BaseHead/>
+    </head>
+    <body>
+        <Header section={currentRoute.TITLE} />
+        <Section route={currentRoute}/>
+        <slot/>
+        <Footer/>
+    </body>
+</html>
