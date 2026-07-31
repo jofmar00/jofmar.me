@@ -2,7 +2,13 @@
 import PageLayout from "@/layouts/page-layout.astro"
 import { getCollection } from "astro:content"
 
-const entries = await getCollection("project");
+const entries = await getCollection("projects");
 ---
 <PageLayout route="/projects">
+    {entries.map((p) => (
+        <div >
+            <h2>{p.data.title}</h2>
+            <p>{p.data.description}</p>
+        </div>
+    ))}
 </PageLayout> 
