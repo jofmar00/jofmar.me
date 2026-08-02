@@ -9,7 +9,7 @@ export default defineConfig({
       {
           provider: fontProviders.google(),
           name: 'Baumans',
-          cssVariable: '--font-baumans',
+          cssVariable: '--baumans',
       },
 	],
 

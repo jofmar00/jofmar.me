@@ -1,26 +1,110 @@
 ---
+import { Image } from "astro:assets";
 import BaseHead from "@/components/base-head.astro";
 import type { Route } from "@/types";
 import { ROUTES, SITE } from "@/consts";
+import jofmarImage from "@/assets/jofmar.jpeg";
+import "@/styles/global.css";
 ---
 
 <html lang="en">
 	<head>
 		<BaseHead />
 	</head>
-	<body style="font-family: var(--font-baumans);">
-		<!-- TODO QUE SEA MARKDOWN INYECTADO -->
-		 <!-- TODO Cambiar estilos a Tailwind -->
-		<h1>My own site!</h1>
-		<h3>{SITE.DESCRIPTION}</h3>
-		<p>Page still in construction!</p>
-		<img src="/gifs/penguin-drill.gif" alt="Penguin drill" height="200">
-		<p>Sites:</p>
+	<body class="font-baumans">
+		<main class="mx-auto max-w-2xl px-4">
+		<div
+			class="flex flex-col sm:flex-row items-center justify-center gap-5 mt-8 mb-20"
+		>
+			<Image
+				src={jofmarImage}
+				alt=""
+				width={128}
+				height={128}
+				class="w-32 h-32 rounded-full object-cover"
+			/>
+			<div class="flex-r max-sm:text-center">
+				<h1 class="text-2xl">{SITE.TITLE}</h1>
+				<h2 class="text-lg">{SITE.DESCRIPTION}</h2>
+			</div>
+		</div>
 
 		<!-- Sites -->
-		{ROUTES.map((r: Route) => (
-			<a href={r.URL} style="margin-right: 1rem;">{r.TITLE}</a>
-		))}
+		<div class="grid grid-cols-2 md:grid-cols-4">
+			{
+				ROUTES.filter((r: Route) => !r.HIDDEN).map((r: Route) => (
+					<a
+						href={r.URL}
+						class="route-link group flex flex-col items-center gap-2 text-center"
+						style={`--icon-url: url(${r.ICON});`}
+					>
+						<span class="relative">
+							<span
+								class="route-icon size-10 transition-transform group-hover:scale-110"
+								role="img"
+								aria-label={r.TITLE}
+							/>
+							{r.NEW && (
+								<span class="absolute -top-2 -right-3 rounded-full bg-red-500 px-1 text-[12px] leading-tight text-white">
+									new!
+								</span>
+							)}
+						</span>
+						{r.TITLE}
+					</a>
+				))
+			}
+		</div>
 
+		<div class="mt-24 flex flex-col items-center justify-center gap-4">
+			<p>Page still in construction!</p>
+			<img src="/gifs/penguin-drill.gif" alt="Penguin drill" class="h-48" />
+		</div>
+		</main>
 	</body>
 </html>
+
+<style>
+		@keyframes doodle-wobble {
+		0%,
+		100% {
+			transform: rotate(2deg);
+		}
+		14% {
+			transform: rotate(-5deg);
+		}
+		28% {
+			transform: rotate(4deg);
+		}
+		42% {
+			transform: rotate(-3deg);
+		}
+		57% {
+			transform: rotate(6deg);
+		}
+		71% {
+			transform: rotate(-4deg);
+		}
+		85% {
+			transform: rotate(5deg);
+		}
+	}
+
+	.route-icon {
+		display: inline-block;
+		background-color: currentColor;
+		-webkit-mask-image: var(--icon-url);
+		mask-image: var(--icon-url);
+		-webkit-mask-size: contain;
+		mask-size: contain;
+		-webkit-mask-repeat: no-repeat;
+		mask-repeat: no-repeat;
+		-webkit-mask-position: center;
+		mask-position: center;
+		transition: background-color 0.1s;
+	}
+
+	.group:hover .route-icon {
+		animation: doodle-wobble 3.33s steps(1) infinite;
+	}
+</style>

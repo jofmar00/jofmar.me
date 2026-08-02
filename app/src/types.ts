@@ -10,4 +10,6 @@ export type Route = {
     TITLE: string;
     ICON: string;
     DESCRIPTION?: string;
+    HIDDEN?: boolean;
+    NEW?: boolean;
 }
