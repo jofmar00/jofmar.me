@@ -1,5 +1,6 @@
 ---
 import { SITE } from "@/consts";
+import "@/styles/global.css"
 
 interface HeaderProps {
    section: string 
@@ -7,6 +8,11 @@ interface HeaderProps {
 
 const { section } = Astro.props as HeaderProps;
 ---
-<header>
-    <h2><a href="/">{SITE.URL}</a>/{section}</h2>
+<header class="font-baumans">
+    <h2 class="text-2xl p-5 flex gap-1 justify-center">
+        <a href="/" class="hover:underline">{SITE.URL}</a>
+        /
+        <a href={section} class="hover:underline">{section}</a>
+    </h2>
+
 </header>
