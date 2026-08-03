@@ -1,14 +1,16 @@
 ---
 import type { Route } from "@/types";
+import { t } from "@/lib/i18n";
 
 interface SectionProps {
     route: Route
 }
 
 const { route } = Astro.props as SectionProps;
---- 
+const title = t(route.TITLE, Astro.currentLocale);
+---
 <div style="display: flex; align-items: center; gap: 1rem;">
-    <img src={route.ICON} alt={route.TITLE} height="50" width="50" />
-    <h1>{route.TITLE}</h1>
-    <p>{route.DESCRIPTION}</p>
+    <img src={route.ICON} alt={title} height="50" width="50" />
+    <h1>{title}</h1>
+    {route.DESCRIPTION && <p>{t(route.DESCRIPTION, Astro.currentLocale)}</p>}
 </div>

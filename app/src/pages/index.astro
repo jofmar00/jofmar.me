@@ -3,11 +3,13 @@ import { Image } from "astro:assets";
 import BaseHead from "@/components/base-head.astro";
 import type { Route } from "@/types";
 import { ROUTES, SITE } from "@/consts";
+import { t } from "@/lib/i18n";
 import jofmarImage from "@/assets/jofmar.jpeg";
 import "@/styles/global.css";
+import { slide } from "astro:transitions";
 ---
 
-<html lang="en">
+<html lang={Astro.currentLocale}>
 	<head>
 		<BaseHead />
 	</head>
@@ -15,6 +17,7 @@ import "@/styles/global.css";
 		<main class="mx-auto max-w-2xl px-4">
 		<div
 			class="flex flex-col sm:flex-row items-center justify-center gap-5 mt-8 mb-20"
+			transition:animate={slide({duration: '0.4s'})}
 		>
 			<Image
 				src={jofmarImage}
@@ -24,8 +27,8 @@ import "@/styles/global.css";
 				class="w-32 h-32 rounded-full object-cover"
 			/>
 			<div class="flex-r max-sm:text-center">
-				<h1 class="text-2xl">{SITE.TITLE}</h1>
-				<h2 class="text-lg">{SITE.DESCRIPTION}</h2>
+				<h1 class="text-2xl">{t(SITE.TITLE, Astro.currentLocale)}</h1>
+				<h2 class="text-lg">{t(SITE.DESCRIPTION, Astro.currentLocale)}</h2>
 			</div>
 		</div>
 
@@ -42,7 +45,7 @@ import "@/styles/global.css";
 							<span
 								class="route-icon size-10 transition-transform group-hover:scale-110"
 								role="img"
-								aria-label={r.TITLE}
+								aria-label={t(r.TITLE, Astro.currentLocale)}
 							/>
 							{r.NEW && (
 								<span class="absolute -top-2 -right-3 rounded-full bg-red-500 px-1 text-[12px] leading-tight text-white">
@@ -50,7 +53,7 @@ import "@/styles/global.css";
 								</span>
 							)}
 						</span>
-						{r.TITLE}
+						{t(r.TITLE, Astro.currentLocale)}
 					</a>
 				))
 			}

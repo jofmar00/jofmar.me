@@ -1,15 +1,16 @@
+export type LocalizedString = Record<'es' | 'en', string>;
 export type Site = {
-    TITLE: string;
-    DESCRIPTION: string;
+    TITLE: LocalizedString;
+    DESCRIPTION: LocalizedString;
     AUTHOR: string;
     URL: string;
-}; 
+};
 
 export type Route = {
     URL: string;
-    TITLE: string;
+    TITLE: LocalizedString;
     ICON: string;
-    DESCRIPTION?: string;
+    DESCRIPTION?: LocalizedString;
     HIDDEN?: boolean;
     NEW?: boolean;
 }

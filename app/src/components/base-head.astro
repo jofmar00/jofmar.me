@@ -1,6 +1,8 @@
 ---
 import { Font } from "astro:assets";
 import { SITE } from "@/consts";
+import { t } from "@/lib/i18n";
+import { ClientRouter } from "astro:transitions";
 ---
 
 <!-- Global Metadata -->
@@ -9,7 +11,10 @@ import { SITE } from "@/consts";
 <link rel="icon" href="/favicon.ico" />
 <meta name="viewport" content="width=device-width" />
 <meta name="generator" content={Astro.generator} />
-<title>{SITE.TITLE}</title> 
+<title>{t(SITE.TITLE, Astro.currentLocale)}</title>
 
 <!-- Fonts -->
 <Font cssVariable="--baumans"/>
+
+<!-- View Transitions -->
+ <ClientRouter/>
