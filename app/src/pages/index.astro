@@ -24,28 +24,30 @@ import { slide } from "astro:transitions";
 				alt=""
 				width={128}
 				height={128}
+				densities={[1, 2]}
 				class="w-32 h-32 rounded-full object-cover"
 			/>
 			<div class="flex-r max-sm:text-center">
-				<h1 class="text-2xl">{t(SITE.TITLE, Astro.currentLocale)}</h1>
+				<h1 class="text-2xl">{SITE.TITLE}</h1>
 				<h2 class="text-lg">{t(SITE.DESCRIPTION, Astro.currentLocale)}</h2>
 			</div>
 		</div>
 
 		<!-- Sites -->
-		<div class="grid grid-cols-2 md:grid-cols-4">
+		<div class="grid grid-cols-2 gap-y-6 md:grid-cols-4">
 			{
 				ROUTES.filter((r: Route) => !r.HIDDEN).map((r: Route) => (
 					<a
 						href={r.URL}
-						class="route-link group flex flex-col items-center gap-2 text-center"
-						style={`--icon-url: url(${r.ICON});`}
+						class="route-link group flex flex-col items-center gap-2 text-center hover:underline"
+						style={`--icon-url: url(${r.ICON}); --hover-color: ${r.COLOR}`}
 					>
 						<span class="relative">
 							<span
-								class="route-icon size-10 transition-transform group-hover:scale-110"
+								class="route-icon-display size-10 transition-transform group-hover:scale-110"
 								role="img"
 								aria-label={t(r.TITLE, Astro.currentLocale)}
+								transition:name={`icon-${r.URL}`}
 							/>
 							{r.NEW && (
 								<span class="absolute -top-2 -right-3 rounded-full bg-red-500 px-1 text-[12px] leading-tight text-white">
@@ -60,7 +62,7 @@ import { slide } from "astro:transitions";
 		</div>
 
 		<div class="mt-24 flex flex-col items-center justify-center gap-4">
-			<p>Page still in construction!</p>
+			<p>Esta página sigue en construcción...</p>
 			<img src="/gifs/penguin-drill.gif" alt="Penguin drill" class="h-48" />
 		</div>
 		</main>
@@ -93,21 +95,11 @@ import { slide } from "astro:transitions";
 		}
 	}
 
-	.route-icon {
-		display: inline-block;
-		background-color: currentColor;
-		-webkit-mask-image: var(--icon-url);
-		mask-image: var(--icon-url);
-		-webkit-mask-size: contain;
-		mask-size: contain;
-		-webkit-mask-repeat: no-repeat;
-		mask-repeat: no-repeat;
-		-webkit-mask-position: center;
-		mask-position: center;
+	.route-icon-display {
 		transition: background-color 0.1s;
 	}
 
-	.group:hover .route-icon {
+	.group:hover .route-icon-display {
 		animation: doodle-wobble 3.33s steps(1) infinite;
 	}
 </style>

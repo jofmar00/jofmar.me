@@ -1,15 +1,20 @@
 ---
 import PageLayout from "@/layouts/page-layout.astro"
+import ReadingPreviewLayout from "@/layouts/reading-preview-layout.astro";
 import { getCollection } from "astro:content"
 
 const entries = await getCollection("blog");
 ---
-<PageLayout route="/blog">
-    {entries.map((post) => (
-        <time datetime={post.data.date.toISOString()}>
-            {post.data.date.toISOString().slice(0, 10)}
-        </time>
-        <a href={`/blog/${post.id}`}>{post.data.title}</a>
-        <br>
-    ))}
+<PageLayout path="/blog">
+    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {entries.map((post) => (
+            <ReadingPreviewLayout post={{
+                id: post.id,
+                title: post.data.title,
+                description: post.data.description,
+                date: post.data.date.toLocaleDateString(),
+                miniature: post.data.miniature
+            }}></ReadingPreviewLayout>
+        ))}
+    </div>
 </PageLayout>

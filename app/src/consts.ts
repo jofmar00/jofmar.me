@@ -1,79 +1,60 @@
 import type { Site, Route } from '@/types';
 
 export const SITE: Site = {
-    TITLE: {
-        es: 'Jofmar.me',
-        en: 'Jofmar.me'
-    },
-    DESCRIPTION: {
-        es: 'Bienvenido a jofmar.me, mi pequeño blog donde comparto con internet un trocito de mí mismo',
-        en: 'Welcome to jofmar.me, my silly little weblog where I share with the internet a piece of myself'
-    },
+    TITLE: 'Jofmar.me',
+    DESCRIPTION: { es: 'Bienvenidos a jofmar.me, mi pequeño rincon dentro de internet donde intento compartir con el mundo una pequeña parte de todo aquello por lo que vivo y creo. Espero que os guste :)!', en: 'Welcome to jofmar.me, my silly little weblog where I share with the internet a piece of myself' },
     AUTHOR: 'Jorge Fernández',
     URL: 'jofmar.me'
 }
 
 export const ROUTES: Route[] = [
     {
-        TITLE: {
-            es: 'Acerca de mí',
-            en: 'About me'
-        },
+        TITLE: { es: 'Acerca de mí', en: 'About me' },
+        DESCRIPTION: { es: 'Conóceme un poco mejor', en: 'Know me a little better' },
+        COLOR: '#467A56' ,
         URL: '/about',
         ICON: '/icons/todo.svg',
-        DESCRIPTION: {
-            es: 'Conóceme un poco mejor',
-            en: 'Know me a little better'
-        },
-        NEW: true
+        NEW: true,
+        HIDDEN: true
     },
     {
-        TITLE: {
-            es: 'blog',
-            en: 'blog'
-        },
+        TITLE: { es: 'Blog', en: 'blog' },
+        DESCRIPTION: { es: 'Sobre mi vida y aquello en lo que creo', en: 'Random ideas and bits of reflection' },
+        COLOR: '#6DD4F0' ,
         URL: '/blog',
         ICON: '/icons/blog.svg',
-        DESCRIPTION: {
-            es: 'Ideas y trozitos de reflexión aleatorios',
-            en: 'Random ideas and bits of reflection'
-        },
         NEW: true
     },
     {
-        TITLE: {
-            es: 'logros',
-            en: 'achievements'
-        },
+        TITLE: { es: 'Logros', en: 'achievements' },
+        DESCRIPTION: { es: 'Todo lo que merece ser reconocido', en: 'Everything that deserves to be recognized' },
+        COLOR: '#FFB830' ,
         URL: '/achievements',
         ICON: '/icons/achievements.svg',
         NEW: true
     },
     {
-        TITLE: {
-            es: 'música',
-            en: 'music'
-        },
+        TITLE: { es: 'Música', en: 'music' },
+        DESCRIPTION: { es: 'TODO', en: 'TODO' },
+        COLOR: '#467A56' ,
         URL: '/music',
         ICON: '/icons/todo.svg',
         HIDDEN: true
     },
     {
-        TITLE: {
-            es: 'proyectos',
-            en: 'projects'
-        },
+        TITLE: { es: 'proyectos', en: 'projects' },
+        DESCRIPTION: { es: 'TODO', en: 'TODO' },
+        COLOR: '#467A56' ,
         URL: '/projects',
         ICON: '/icons/todo.svg',
         HIDDEN: true
     },
     {
-        TITLE: {
-            es: 'portafolio',
-            en: 'portfolio'
-        },
+        TITLE: { es: 'Portafolio', en: 'portfolio' },
+        DESCRIPTION: { es: 'TODO', en: 'Everything that deserves to be recognized' },
+        COLOR: '#FF6B6B' ,
         URL: '/portfolio',
-        ICON: '/icons/todo.svg',
+        ICON: '/icons/portfolio.svg',
         HIDDEN: true
     }
 ]

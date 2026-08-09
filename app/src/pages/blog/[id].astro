@@ -1,13 +1,34 @@
 ---
-import { getCollection } from "astro:content";
+import ReadingLayout from "@/layouts/reading-layout.astro";
+import { getCollection, render } from "astro:content";
 
 export async function getStaticPaths() {
     const entries = await getCollection("blog");
     return entries.map((post) => ({
         params: { id: post.id },
+        props: { post },
     }));
 }
 
-const { id } = Astro.params;
+const { post } = Astro.props;
+const { Content } = await render(post);
 ---
-<h1>id</h1>
+
+<ReadingLayout
+    path="/blog"
+    post={{
+        id: post.id,
+        title: post.data.title,
+        miniature: post.data.miniature,
+        date: post.data.date.toLocaleString("es", {
+            day: "numeric",
+            weekday: "long",
+            month: "long",
+            year: "numeric",
+        }),
+        description: post.data.description,
+        url: `/blog/${post.id}`,
+    }}
+>
+    <Content />
+</ReadingLayout>

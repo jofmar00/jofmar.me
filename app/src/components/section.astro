@@ -3,14 +3,27 @@ import type { Route } from "@/types";
 import { t } from "@/lib/i18n";
 
 interface SectionProps {
-    route: Route
+    route: Route;
 }
 
 const { route } = Astro.props as SectionProps;
 const title = t(route.TITLE, Astro.currentLocale);
 ---
-<div style="display: flex; align-items: center; gap: 1rem;">
-    <img src={route.ICON} alt={title} height="50" width="50" />
-    <h1>{title}</h1>
-    {route.DESCRIPTION && <p>{t(route.DESCRIPTION, Astro.currentLocale)}</p>}
+
+<div class="flex flex-col pt-8 mx-auto">
+    <div class="flex flex-row space-x-6">
+        <span
+            class="route-icon route-icon-display size-16 -rotate-12"
+            style={`--icon-url: url(${route.ICON}); color: ${route.COLOR};`}
+            role="img"
+            aria-label={title}
+            transition:name={`icon-${route.URL}`}
+        />
+        <div class="flex flex-col">
+            <h1 class="text-2xl" style={`color: ${route.COLOR}`}>{title}</h1>
+            {route.DESCRIPTION && <p>{t(route.DESCRIPTION, Astro.currentLocale)}</p>}
+        </div>
+    </div>
 </div>
+<hr class="my-8 border-t" >
+ 

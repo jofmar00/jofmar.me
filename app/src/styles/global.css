@@ -2,11 +2,41 @@
 
 @theme {
     --font-baumans: var(--baumans);
-}
 
+    /* Monokai dark palette (https://monokai.pro) */
+    --color-base: #272822;
+    --color-surface: #2e2e2a;
+    --color-overlay: #3e3d32;
+    --color-muted: #75715e;
+    --color-subtle: #a1a192;
+    --color-text: #f8f8f2;
+    --color-love: #f92672;
+    --color-gold: #e6db74;
+    --color-rose: #fd5ff0;
+    --color-pine: #66d9ef;
+    --color-foam: #a6e22e;
+    --color-iris: #ae81ff;
+    --color-highlight-low: #2e2e2a;
+    --color-highlight-med: #3e3d32;
+    --color-highlight-high: #49483e;
+}
 
 html {
     cursor: url("/cursor/pointer.cur"), auto;
+    background-color: var(--color-base);
+    color: var(--color-text);
+}
+
+a,
+button,
+[role="button"] {
+    color: var(--color-iris);
+}
+
+a:hover,
+button:hover,
+[role="button"]:hover {
+    color: var(--color-foam);
 }
 
 a,
@@ -21,4 +51,25 @@ summary {
 input,
 textarea {
     cursor: url("/cursor/Ibeam.cur"), text;
+}
+
+.route-icon-display {
+    display: inline-block;
+    background-color: currentColor;
+    -webkit-mask-image: var(--icon-url);
+    mask-image: var(--icon-url);
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+}
+
+.route-link:hover {
+    color: var(--hover-color);
+}
+
+.route-link:hover .route-icon-display {
+    background-color: var(--hover-color);
 }

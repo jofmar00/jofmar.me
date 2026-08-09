@@ -1,0 +1,31 @@
+---
+import type { Post } from '@/types.ts'
+import { Image } from 'astro:assets';
+
+interface Props {
+    post: Post
+}
+
+const { post } = Astro.props;
+---
+
+<a
+    href={`/blog/${post.id}`}
+    class="group flex flex-col overflow-hidden rounded-lg bg-surface transition-colors hover:bg-overlay"
+>
+    <Image
+        src={post.miniature}
+        alt=""
+        width={400}
+        height={225}
+        densities={[1, 2]}
+        class="aspect-video w-full object-cover"
+        transition:name={`post-${post.id}`}
+    />
+    <div class="flex flex-row items-center gap-4 p-4">
+        <time datetime={post.date} class="text-md text-subtle">
+            {post.date}
+        </time>
+        <h2 class="text-xl">{post.title}</h2>
+    </div>
+</a>

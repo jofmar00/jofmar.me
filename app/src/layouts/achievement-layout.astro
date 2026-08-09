@@ -1,0 +1,39 @@
+---
+import type { Achievement } from '@/types.ts'
+import { Image } from 'astro:assets';
+
+interface Props {
+    achievement: Achievement
+}
+
+const { achievement } = Astro.props;
+---
+
+<div class="relative flex flex-row items-center gap-4 rounded-lg bg-surface p-4">
+    {achievement.isNew && (
+        <span class="absolute -top-2 -right-2 rounded-full bg-red-500 px-1 text-lg leading-tight text-white rotate-12 ">
+            new!
+        </span>
+    )}
+    <button type="button" class="group relative w-32 shrink-0">
+        <Image
+            src={achievement.miniature}
+            alt=""
+            width={128}
+            height={128}
+            densities={[1, 2]}
+            class="aspect-square w-32 rounded-md object-cover transition-[filter,opacity] group-hover:opacity-60 group-hover:grayscale"
+        />
+        <span
+            class="route-icon-display pointer-events-none absolute inset-0 m-auto size-16 text-white opacity-0 transition-opacity group-hover:opacity-100"
+            style="--icon-url: url(/icons/photo.svg);"
+        />
+    </button>
+    <div class="flex flex-col gap-1">
+        <h2 class="text-xl">{achievement.title}</h2>
+        <time datetime={achievement.date} class="text-lg text-[#FFB830]">
+            {achievement.date}
+        </time>
+        <slot></slot>
+    </div>
+</div>
