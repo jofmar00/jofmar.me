@@ -7,6 +7,7 @@ interface Props {
 }
 
 const { achievement } = Astro.props;
+const dialogId = `achievement-image-${achievement.id}`;
 ---
 
 <div class="relative flex flex-row items-center gap-4 rounded-lg bg-surface p-4">
@@ -15,7 +16,7 @@ const { achievement } = Astro.props;
             new!
         </span>
     )}
-    <button type="button" class="group relative w-32 shrink-0">
+    <button type="button" data-dialog-target={dialogId} class="group relative w-32 shrink-0">
         <Image
             src={achievement.miniature}
             alt=""
@@ -29,7 +30,30 @@ const { achievement } = Astro.props;
             style="--icon-url: url(/icons/photo.svg);"
         />
     </button>
-    <div class="flex flex-col gap-1">
+
+    <dialog id={dialogId} class="m-auto max-h-[90vh] w-[min(92vw,48rem)] overflow-y-auto border-0 bg-transparent p-0">
+        <div class="relative">
+            <button
+                type="button"
+                data-dialog-close
+                class="absolute top-2 right-2 flex size-12 items-center justify-center rounded-full bg-black/60 text-white"
+                aria-label="Cerrar"
+            >
+                <span class="route-icon-display size-6" style="--icon-url: url(/icons/cross.svg);"></span>
+            </button>
+            <Image
+                src={achievement.miniature}
+                alt=""
+                width={1024}
+                densities={[1, 2]}
+                class="max-h-[70vh] w-full rounded-md object-contain"
+            />
+        </div>
+        <div class="mt-4 text-lg text-center text-text">
+            <slot></slot>
+        </div>
+    </dialog>
+    <div class="min-w-0 flex-1 flex flex-col gap-1">
         <h2 class="text-xl">{achievement.title}</h2>
         <time datetime={achievement.date} class="text-lg text-[#FFB830]">
             {achievement.date}
@@ -37,3 +61,21 @@ const { achievement } = Astro.props;
         <slot></slot>
     </div>
 </div>
+
+<script>
+    document.addEventListener('astro:page-load', () => {
+        document.querySelectorAll<HTMLButtonElement>('[data-dialog-target]').forEach((trigger) => {
+            const dialog = document.getElementById(trigger.dataset.dialogTarget!) as HTMLDialogElement | null;
+            if (!dialog) return;
+
+            trigger.addEventListener('click', () => dialog.showModal());
+            dialog.addEventListener('click', (e) => {
+                if (e.target === dialog) dialog.close();
+            });
+        });
+
+        document.querySelectorAll<HTMLButtonElement>('[data-dialog-close]').forEach((btn) => {
+            btn.addEventListener('click', () => btn.closest('dialog')?.close());
+        });
+    });
+</script>

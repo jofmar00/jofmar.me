@@ -73,3 +73,32 @@ textarea {
 .route-link:hover .route-icon-display {
     background-color: var(--hover-color);
 }
+
+dialog {
+    opacity: 0;
+    transform: scale(0.95);
+    transition: opacity 0.2s ease-out, transform 0.2s ease-out, display 0.2s ease-out allow-discrete, overlay 0.2s ease-out allow-discrete;
+}
+
+dialog[open] {
+    opacity: 1;
+    transform: scale(1);
+}
+
+@starting-style {
+    dialog[open] {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+}
+
+dialog::backdrop {
+    background-color: rgb(0 0 0 / 0.6);
+    transition: background-color 0.2s ease-out, display 0.2s ease-out allow-discrete, overlay 0.2s ease-out allow-discrete;
+}
+
+@starting-style {
+    dialog::backdrop {
+        background-color: rgb(0 0 0 / 0);
+    }
+}
