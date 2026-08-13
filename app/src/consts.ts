@@ -19,7 +19,7 @@ export const ROUTES: Route[] = [
     },
     {
         TITLE: { es: 'Blog', en: 'blog' },
-        DESCRIPTION: { es: 'Sobre mi vida y aquello en lo que creo', en: 'Random ideas and bits of reflection' },
+        DESCRIPTION: { es: 'Reflexiones sobre mi vida y aquello en lo que creo', en: 'Random ideas and bits of reflection' },
         COLOR: '#6DD4F0' ,
         URL: '/blog',
         ICON: '/icons/blog.svg',

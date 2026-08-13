@@ -32,7 +32,7 @@ if (!route) {
     </head>
     <body>
         <Header path={path} />
-        <main class="mx-auto max-w-2xl px-4 font-baumans pt-12">
+        <main class="mx-auto max-w-4xl px-4 font-baumans mt-2">
             <div class="flex flex-col py-4">
                 <h1 class="text-3xl font-semibold">{post.title}</h1>
                 <p class="text-subtle">{post.description}</p>
@@ -48,8 +48,9 @@ if (!route) {
             />
             <time class="font-semibold" datetime={post.date}>{post.date}</time>
             <hr class="my-4 border-dashed border-t-2">
-            <!-- Content -->
-            <slot />
+            <div class="prose-content">
+                <slot />
+            </div>
         </main>
         <Footer />
     </body>

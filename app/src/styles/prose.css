@@ -1,0 +1,18 @@
+@plugin "@tailwindcss/typography";
+
+@utility prose-content {
+  @apply prose lg:prose-lg prose-invert max-w-none;
+
+  --tw-prose-body: var(--color-text);
+  --tw-prose-headings: var(--color-text);
+  --tw-prose-links: var(--color-iris);
+  --tw-prose-bold: var(--color-text);
+  --tw-prose-quotes: var(--color-subtle);
+  --tw-prose-quote-borders: var(--color-overlay);
+  --tw-prose-code: var(--color-gold);
+  --tw-prose-pre-bg: var(--color-surface);
+  --tw-prose-pre-code: var(--color-text);
+  --tw-prose-hr: var(--color-overlay);
+  --tw-prose-th-borders: var(--color-overlay);
+  --tw-prose-td-borders: var(--color-highlight-med);
+}
