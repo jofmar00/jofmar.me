@@ -1,0 +1,82 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+    id: string;
+    image: ImageMetadata;
+    alt?: string;
+    class?: string;
+    thumbnailClass?: string;
+    thumbnailWidth?: number;
+    thumbnailHeight?: number;
+}
+
+const {
+    id,
+    image,
+    alt = "",
+    class: className = "w-32 shrink-0",
+    thumbnailClass = "aspect-square w-32 rounded-md object-cover",
+    thumbnailWidth = 128,
+    thumbnailHeight = 128,
+} = Astro.props;
+
+const dialogId = `lightbox-${id}`;
+---
+
+<button type="button" data-dialog-target={dialogId} class:list={["group relative", className]}>
+    <Image
+        src={image}
+        alt={alt}
+        width={thumbnailWidth}
+        height={thumbnailHeight}
+        densities={[1, 2]}
+        class:list={["transition-[filter,opacity] group-hover:opacity-60 group-hover:grayscale", thumbnailClass]}
+    />
+    <span
+        class="route-icon-display pointer-events-none absolute inset-0 m-auto size-16 text-white opacity-0 transition-opacity group-hover:opacity-100"
+        style="--icon-url: url(/icons/camera.svg);"
+    />
+</button>
+
+<dialog id={dialogId} class="m-auto max-h-[90vh] w-[min(92vw,48rem)] overflow-y-auto border-0 bg-transparent p-0">
+    <div class="relative">
+        <button
+            type="button"
+            data-dialog-close
+            class="absolute top-2 right-2 flex size-12 items-center justify-center rounded-full bg-black/60 text-white"
+            aria-label="Cerrar"
+        >
+            <span class="route-icon-display size-6" style="--icon-url: url(/icons/cross.svg);"></span>
+        </button>
+        <Image
+            src={image}
+            alt={alt}
+            width={1024}
+            densities={[1, 2]}
+            class="max-h-[70vh] w-full rounded-md object-contain"
+        />
+    </div>
+    <div class="mt-4 text-lg text-center text-text">
+        <slot></slot>
+    </div>
+</dialog>
+
+<script>
+    document.addEventListener('astro:page-load', () => {
+        document.querySelectorAll<HTMLButtonElement>('[data-dialog-target]').forEach((trigger) => {
+            const dialog = document.getElementById(trigger.dataset.dialogTarget!) as HTMLDialogElement | null;
+            if (!dialog) return;
+
+            trigger.addEventListener('click', () => dialog.showModal());
+            dialog.addEventListener('click', (e) => {
+                if (e.target === dialog) dialog.close();
+            });
+        });
+
+        document.querySelectorAll<HTMLButtonElement>('[data-dialog-close]').forEach((btn) => {
+            btn.addEventListener('click', () => btn.closest('dialog')?.close());
+        });
+    });
+</script>

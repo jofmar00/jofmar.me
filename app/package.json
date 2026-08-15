@@ -10,7 +10,9 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "check": "astro check"
+    "check": "astro check",
+    "sync:s3": "bash scripts/sync-s3.sh",
+    "deploy": "npm run build && npm run sync:s3"
   },
   "dependencies": {
     "@astrojs/mdx": "^7.0.5",

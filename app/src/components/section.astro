@@ -20,7 +20,7 @@ const title = t(route.TITLE, Astro.currentLocale);
             transition:name={`icon-${route.URL}`}
         />
         <div class="flex flex-col">
-            <h1 class="text-2xl" style={`color: ${route.COLOR}`}>{title}</h1>
+            <h1 class="text-2xl font-semibold" style={`color: ${route.COLOR}`}>{title}</h1>
             {route.DESCRIPTION && <p>{t(route.DESCRIPTION, Astro.currentLocale)}</p>}
         </div>
     </div>

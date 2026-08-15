@@ -1,0 +1,28 @@
+---
+import Lightbox from "@/components/lightbox.astro";
+import type { ImageMetadata } from "astro";
+
+const photoModules = import.meta.glob<{ default: ImageMetadata }>(
+    "/src/assets/photos/*.{jpg,jpeg,JPG,JPEG,png,PNG}",
+    { eager: true }
+);
+
+const photos = Object.entries(photoModules)
+    .map(([path, mod]) => ({
+        id: path.split("/").pop()!.replace(/[^a-zA-Z0-9-]/g, "-"),
+        image: mod.default,
+    }))
+    .sort((a, b) => b.id.localeCompare(a.id));
+---
+<div class="grid grid-cols-2 gap-2 sm:grid-cols-3 md:grid-cols-4">
+    {photos.map(({ id, image }) => (
+        <Lightbox
+            id={id}
+            image={image}
+            class="w-full aspect-square"
+            thumbnailClass="h-full w-full rounded-md object-cover"
+            thumbnailWidth={400}
+            thumbnailHeight={400}
+        />
+    ))}
+</div>

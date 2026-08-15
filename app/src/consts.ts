@@ -34,27 +34,20 @@ export const ROUTES: Route[] = [
         NEW: true
     },
     {
-        TITLE: { es: 'Música', en: 'music' },
-        DESCRIPTION: { es: 'TODO', en: 'TODO' },
-        COLOR: '#467A56' ,
-        URL: '/music',
-        ICON: '/icons/todo.svg',
-        HIDDEN: true
-    },
-    {
-        TITLE: { es: 'proyectos', en: 'projects' },
-        DESCRIPTION: { es: 'TODO', en: 'TODO' },
-        COLOR: '#467A56' ,
-        URL: '/projects',
-        ICON: '/icons/todo.svg',
-        HIDDEN: true
+        TITLE: { es: 'Fotos', en: 'Photos' },
+        DESCRIPTION: { es: 'Algunas fotos graciosas de dudosa calidad sacadas con la cámara de mi Nintendo DS', en: 'Everything that deserves to be recognized' },
+        COLOR: '#A8C44A' ,
+        URL: '/photos',
+        ICON: '/icons/photo.svg',
+        HIDDEN: false,
+        NEW: true
     },
     {
         TITLE: { es: 'Portafolio', en: 'portfolio' },
-        DESCRIPTION: { es: 'TODO', en: 'Everything that deserves to be recognized' },
+        DESCRIPTION: { es: 'Proyectos y tecnología :)', en: 'Everything that deserves to be recognized' },
         COLOR: '#FF6B6B' ,
         URL: '/portfolio',
-        ICON: '/icons/portfolio.svg',
+        ICON: '/icons/file.svg',
         HIDDEN: true
     },
     {
