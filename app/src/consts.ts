@@ -35,10 +35,10 @@ export const ROUTES: Route[] = [
     },
     {
         TITLE: { es: 'Fotos', en: 'Photos' },
-        DESCRIPTION: { es: 'Algunas fotos graciosas de dudosa calidad sacadas con la cámara de mi Nintendo DS', en: 'Everything that deserves to be recognized' },
+        DESCRIPTION: { es: 'Algunas fotos de dudosa calidad sacadas con la cámara de mi Nintendo DS', en: 'Everything that deserves to be recognized' },
         COLOR: '#A8C44A' ,
         URL: '/photos',
-        ICON: '/icons/photo.svg',
+        ICON: '/icons/camera.svg',
         HIDDEN: false,
         NEW: true
     },

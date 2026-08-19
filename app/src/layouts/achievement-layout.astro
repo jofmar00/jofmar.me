@@ -9,16 +9,23 @@ interface Props {
 const { achievement } = Astro.props;
 ---
 
-<div class="relative flex flex-row items-center gap-4 rounded-lg bg-surface p-4">
+<div class="relative flex flex-col items-center gap-4 rounded-lg bg-surface p-4 sm:flex-row">
     {achievement.isNew && (
         <span class="absolute -top-2 -right-2 rounded-full bg-red-500 px-1 text-lg leading-tight text-white rotate-12 ">
             new!
         </span>
     )}
-    <Lightbox id={`achievement-${achievement.id}`} image={achievement.miniature}>
+    <Lightbox
+        id={`achievement-${achievement.id}`}
+        image={achievement.miniature}
+        class="w-48 shrink-0 sm:w-32"
+        thumbnailClass="aspect-square w-48 rounded-md object-cover sm:w-32"
+        thumbnailWidth={192}
+        thumbnailHeight={192}
+    >
         <slot></slot>
     </Lightbox>
-    <div class="min-w-0 flex-1 flex flex-col gap-1">
+    <div class="min-w-0 flex-1 flex flex-col items-center gap-1 text-center sm:items-start sm:text-left">
         <h2 class="text-xl">{achievement.title}</h2>
         <time datetime={achievement.date} class="text-lg text-[#FFB830]">
             {achievement.date}
