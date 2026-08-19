@@ -19,7 +19,7 @@ const {
     class: className = "w-32 shrink-0",
     thumbnailClass = "aspect-square w-32 rounded-md object-cover",
     thumbnailWidth = 128,
-    thumbnailHeight = 128,
+    thumbnailHeight,
 } = Astro.props;
 
 const dialogId = `lightbox-${id}`;
@@ -40,8 +40,8 @@ const dialogId = `lightbox-${id}`;
     />
 </button>
 
-<dialog id={dialogId} class="m-auto max-h-[90vh] w-[min(92vw,48rem)] overflow-y-auto border-0 bg-transparent p-0">
-    <div class="relative">
+<dialog id={dialogId} class="m-auto max-h-[95vh] w-[min(96vw,80rem)] overflow-y-auto border-0 bg-transparent p-0">
+    <div class="relative mx-auto w-fit">
         <button
             type="button"
             data-dialog-close
@@ -53,9 +53,9 @@ const dialogId = `lightbox-${id}`;
         <Image
             src={image}
             alt={alt}
-            width={1024}
+            width={1600}
             densities={[1, 2]}
-            class="max-h-[70vh] w-full rounded-md object-contain"
+            class="h-auto max-h-[85vh] w-auto max-w-full rounded-md"
         />
     </div>
     <div class="mt-4 text-lg text-center text-text">
