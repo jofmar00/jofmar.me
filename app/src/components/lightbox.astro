@@ -25,7 +25,7 @@ const {
 const dialogId = `lightbox-${id}`;
 ---
 
-<button type="button" data-dialog-target={dialogId} class:list={["group relative", className]}>
+<button type="button" data-dialog-target={dialogId} class:list={["group relative not-prose", className]}>
     <Image
         src={image}
         alt={alt}
@@ -40,7 +40,7 @@ const dialogId = `lightbox-${id}`;
     />
 </button>
 
-<dialog id={dialogId} class="m-auto max-h-[95vh] w-[min(96vw,80rem)] overflow-y-auto border-0 bg-transparent p-0">
+<dialog id={dialogId} class="m-auto max-h-[95vh] w-[min(96vw,80rem)] overflow-y-auto border-0 bg-transparent p-0 not-prose">
     <div class="relative mx-auto w-fit">
         <button
             type="button"
