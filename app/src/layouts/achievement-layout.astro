@@ -1,23 +1,30 @@
 ---
-import type { Achievement } from '@/types.ts'
 import Lightbox from '@/components/lightbox.astro';
+import type { CollectionEntry } from 'astro:content';
 
 interface Props {
-    achievement: Achievement
+    achievement: CollectionEntry<"achievements">
 }
 
 const { achievement } = Astro.props;
+const date = achievement.data.date.toLocaleString("es", {
+    day: "numeric",
+    weekday: "long",
+    month: "long",
+    year: "numeric",
+});
+const isNew = (Date.now() - achievement.data.date.getTime()) / (1000 * 60 * 60 * 24) <= 14;
 ---
 
 <div class="relative flex flex-col items-center gap-4 rounded-lg bg-surface p-4 sm:flex-row">
-    {achievement.isNew && (
+    {isNew && (
         <span class="absolute -top-2 -right-2 rounded-full bg-red-500 px-1 text-lg leading-tight text-white rotate-12 ">
             new!
         </span>
     )}
     <Lightbox
         id={`achievement-${achievement.id}`}
-        image={achievement.miniature}
+        image={achievement.data.miniature}
         class="w-48 shrink-0 sm:w-32"
         thumbnailClass="aspect-square w-48 rounded-md object-cover sm:w-32"
         thumbnailWidth={192}
@@ -26,9 +33,9 @@ const { achievement } = Astro.props;
         <slot></slot>
     </Lightbox>
     <div class="min-w-0 flex-1 flex flex-col items-center gap-1 text-center sm:items-start sm:text-left">
-        <h2 class="text-xl">{achievement.title}</h2>
-        <time datetime={achievement.date} class="text-lg text-[#FFB830]">
-            {achievement.date}
+        <h2 class="text-xl">{achievement.data.title}</h2>
+        <time datetime={date} class="text-lg text-[#FFB830]">
+            {date}
         </time>
         <slot></slot>
     </div>

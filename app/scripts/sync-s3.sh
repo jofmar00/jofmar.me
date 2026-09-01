@@ -17,4 +17,4 @@ if [ ! -d "$APP_DIR/dist" ]; then
   exit 1
 fi
 
-aws s3 sync "$APP_DIR/dist" "s3://$BUCKET" --delete
+aws s3 sync "$APP_DIR/dist" "s3://$BUCKET" --delete --size-only

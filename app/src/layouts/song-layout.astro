@@ -1,0 +1,25 @@
+---
+import { YouTube } from '@astro-community/astro-embed-youtube';
+
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+    song: CollectionEntry<"music">
+}
+const { song } = Astro.props;
+const date = song.data.date.toLocaleDateString();
+const isNew = (Date.now() - song.data.date.getTime()) / (1000 * 60 * 60 * 24) <= 14;
+--- 
+<div class="relative group flex flex-col rounded-lg bg-surface transition-colors hover:bg-overlay">
+    {isNew && (
+        <span class="absolute -top-2 -right-2 z-10 rounded-full bg-red-500 px-1 text-lg leading-tight text-white rotate-12 ">
+            new!
+        </span>
+    )}
+    <YouTube id={song.data.video} posterQuality='high'></YouTube>
+    <div class="flex flex-row items-center gap-2 p-3">
+        <h2 class="text-xl">{song.data.title}</h2>
+        <p class="text-muted">{song.data.artist}</p>
+        <p class="text-muted ml-auto">{date}</p>
+    </div>
+</div>

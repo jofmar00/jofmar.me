@@ -1,7 +1,20 @@
 ---
-import PageLayoutAstroComponent from "@/layouts/page-layout.astro"
-import Content from "@/content/portfolio.md"
+import ProjectLayout from "@/layouts/project-layout.astro";
+import PageLayoutComponent from "@/layouts/page-layout.astro"
+import { getCollection, render } from "astro:content"
+
+const entries = await getCollection("projects");
+const rendered = await Promise.all(entries.map(async (p) => ({
+    entry: p,
+    Content: (await render(p)).Content,
+})));
 ---
-<PageLayoutAstroComponent path="/portfolio">
-    <Content />
-</PageLayoutAstroComponent>
+<PageLayoutComponent path="/portfolio">
+    <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {rendered.map(({ entry: p, Content }) => (
+            <ProjectLayout project={p}>
+                <Content />
+            </ProjectLayout>
+        ))}
+    </div>
+</PageLayoutComponent>

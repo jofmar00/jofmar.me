@@ -1,7 +1,8 @@
 ---
 import ReadingLayout from "@/layouts/reading-layout.astro";
-import { getCollection, render } from "astro:content";
+import { getCollection, render, type CollectionEntry } from "astro:content";
 
+// Function to determine url's & content at compile time
 export async function getStaticPaths() {
     const entries = await getCollection("blog");
     return entries.map((post) => ({
@@ -10,25 +11,16 @@ export async function getStaticPaths() {
     }));
 }
 
+interface Props {
+    post: CollectionEntry<"blog">;
+}
 const { post } = Astro.props;
 const { Content } = await render(post);
 ---
 
 <ReadingLayout
     path="/blog"
-    post={{
-        id: post.id,
-        title: post.data.title,
-        miniature: post.data.miniature,
-        date: post.data.date.toLocaleString("es", {
-            day: "numeric",
-            weekday: "long",
-            month: "long",
-            year: "numeric",
-        }),
-        description: post.data.description,
-        url: `/blog/${post.id}`,
-    }}
+    post={post}
 >
     <Content />
 </ReadingLayout>

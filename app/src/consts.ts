@@ -31,7 +31,7 @@ export const ROUTES: Route[] = [
         COLOR: '#FFB830' ,
         URL: '/achievements',
         ICON: '/icons/achievements.svg',
-        NEW: true
+        NEW: false
     },
     {
         TITLE: { es: 'Fotos', en: 'Photos' },
@@ -40,7 +40,7 @@ export const ROUTES: Route[] = [
         URL: '/photos',
         ICON: '/icons/camera.svg',
         HIDDEN: false,
-        NEW: true
+        NEW: false
     },
     {
         TITLE: { es: 'Portafolio', en: 'portfolio' },
@@ -48,7 +48,26 @@ export const ROUTES: Route[] = [
         COLOR: '#FF6B6B' ,
         URL: '/portfolio',
         ICON: '/icons/file.svg',
+        NEW: true,
         HIDDEN: true
+    },
+    {
+        TITLE: { es: 'Quotes', en: 'Quotes' },
+        DESCRIPTION: { es:'Todo lo que quise decir, alguien ya lo dijo mejor', en: 'Quotes I like' },
+        COLOR: '#FF9838' ,
+        URL: '/quotes',
+        ICON: '/icons/bulb.svg',
+        NEW: true,
+        HIDDEN: true
+    },
+    {
+        TITLE: { es: 'Música', en: 'Music' },
+        DESCRIPTION: { es:'Covers!', en: 'Music I like' },
+        COLOR: '#FF9838' ,
+        URL: '/music',
+        ICON: '/icons/music.svg',
+        NEW: true,
+        HIDDEN: false
     },
     {
         TITLE: { es: '404', en: '404' },

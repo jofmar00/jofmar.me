@@ -1,12 +1,13 @@
 ---
-import type { Post } from '@/types.ts'
 import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
 
 interface Props {
-    post: Post
+    post: CollectionEntry<"blog">
 }
 
 const { post } = Astro.props;
+const date = post.data.date.toLocaleDateString();
 ---
 
 <a
@@ -14,7 +15,7 @@ const { post } = Astro.props;
     class="group flex flex-col overflow-hidden rounded-lg bg-surface transition-colors hover:bg-overlay"
 >
     <Image
-        src={post.miniature}
+        src={post.data.miniature}
         alt=""
         width={400}
         height={225}
@@ -23,9 +24,9 @@ const { post } = Astro.props;
         transition:name={`post-${post.id}`}
     />
     <div class="flex flex-col items-center gap-2 p-3">
-        <h2 class="text-xl">{post.title}</h2>
-        <time datetime={post.date} class="text-md text-subtle">
-            {post.date}
+        <h2 class="text-xl">{post.data.title}</h2>
+        <time datetime={date} class="text-md text-subtle">
+            {date}
         </time>
     </div>
 </a>

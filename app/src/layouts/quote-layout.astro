@@ -1,0 +1,19 @@
+---
+interface Props {
+    id: string;
+    date?: string;
+}
+
+const { id, date } = Astro.props;
+---
+
+<div class="flex flex-col gap-2 rounded-lg bg-surface not-prose py-3 px-6 text-center">
+    <div class="italic text-lg prose-content">
+        <slot />
+    </div>
+    {date && (
+        <figcaption class="text-sm text-subtle">
+            <time datetime={date}>{date}</time>
+        </figcaption>
+    )}
+</div>

@@ -1,0 +1,37 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+    project: CollectionEntry<"projects">
+}
+
+const { project } = Astro.props
+---
+
+<div class="flex flex-col gap-3 rounded-lg bg-surface p-4">
+    <div class="flex items-center gap-3">
+        {project.data.url ? (
+            <a
+                href={project.data.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={project.data.url}
+                class="flex size-10 shrink-0 items-center justify-center rounded-full bg-[#FF6B6B]/10 text-[#FF6B6B]"
+            >
+                <span class="route-icon-display size-5" style="--icon-url: url(/icons/link.svg);"></span>
+            </a>
+        ) : (
+            <span class="flex size-10 shrink-0 items-center justify-center rounded-full bg-[#FF6B6B]/10 text-[#FF6B6B]/40">
+                <span class="route-icon-display size-5" style="--icon-url: url(/icons/link.svg);"></span>
+            </span>
+        )}
+        <h2 class="text-lg">{project.data.title}</h2>
+    </div>
+    {project.data.tags && project.data.tags.length > 0 && (
+        <ul class="mt-auto flex flex-wrap gap-2">
+            {project.data.tags.map((tag) => (
+                <li class="rounded-full bg-[#FF6B6B]/10 px-2 py-0.5 text-sm text-[#FF6B6B]">{tag}</li>
+            ))}
+        </ul>
+    )}
+</div>

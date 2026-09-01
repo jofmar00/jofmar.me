@@ -4,18 +4,11 @@ import Footer from "@/components/footer.astro";
 import Header from "@/components/header.astro";
 import { ROUTES } from "@/consts";
 import Image from "astro/components/Image.astro";
-import type { ImageMetadata } from "astro";
+import type { CollectionEntry } from "astro:content";
 
 type Props = {
     path: string;
-    post: {
-        id: string;
-        title: string;
-        miniature: ImageMetadata;
-        description: string;
-        date: string;
-        url: string;
-    };
+    post: CollectionEntry<"blog">;
 };
 
 const { path, post } = Astro.props as Props;
@@ -23,6 +16,12 @@ const route = ROUTES.find((r) => r.URL === path);
 if (!route) {
     throw new Error(`Route ${path} not found in ROUTES`);
 }
+const date = post.data.date.toLocaleString("es", {
+    day: "numeric",
+    weekday: "long",
+    month: "long",
+    year: "numeric",
+});
 ---
 
 <!doctype html>
@@ -34,11 +33,11 @@ if (!route) {
         <Header path={path} />
         <main class="mx-auto max-w-4xl px-4 font-baumans mt-2">
             <div class="flex flex-col py-4">
-                <h1 class="text-3xl font-semibold">{post.title}</h1>
-                <p class="text-subtle">{post.description}</p>
+                <h1 class="text-3xl font-semibold">{post.data.title}</h1>
+                <p class="text-subtle">{post.data.description}</p>
             </div>
             <Image
-                src={post.miniature}
+                src={post.data.miniature}
                 alt=""
                 width={800}
                 height={450}
@@ -46,8 +45,8 @@ if (!route) {
                 class="aspect-video w-full object-cover mb-4 rounded-xl"
                 transition:name={`post-${post.id}`}
             />
-            <time class="font-semibold" datetime={post.date}>{post.date}</time>
-            <hr class="my-4 border-dashed border-t-2">
+            <time class="font-semibold" datetime={date}>{date}</time>
+            <hr class="my-4 border-dashed border-t-2 border-subtle">
             <div class="prose-content">
                 <slot />
             </div>

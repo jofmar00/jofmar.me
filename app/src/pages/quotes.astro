@@ -1,0 +1,27 @@
+---
+import PageLayoutComponent from "@/layouts/page-layout.astro"
+import QuoteLayout from "@/layouts/quote-layout.astro"
+import { getCollection, render } from "astro:content"
+
+const entries = await getCollection("quotes");
+const rendered = await Promise.all(entries.map(async (q) => {
+    const epochSeconds = Number(q.id);
+    const date = Number.isFinite(epochSeconds) ? new Date(epochSeconds * 1000) : null;
+    return {
+        entry: q,
+        date,
+        Content: (await render(q)).Content,
+    };
+}));
+
+rendered.sort((a, b) => (b.date?.valueOf() ?? 0) - (a.date?.valueOf() ?? 0));
+---
+<PageLayoutComponent path="/quotes">
+    <div class="flex flex-col gap-4">
+        {rendered.map(({ entry: q, date, Content }) => (
+            <QuoteLayout id={q.id} date={date?.toLocaleDateString()}>
+                <Content />
+            </QuoteLayout>
+        ))}
+    </div>
+</PageLayoutComponent>
