@@ -29,9 +29,9 @@ const date = post.data.date.toLocaleString("es", {
     <head>
         <BaseHead />
     </head>
-    <body>
+    <body class="flex min-h-screen flex-col mx-auto max-w-2xl lg:max-w-4xl xl:max-w-6xl">
         <Header path={path} />
-        <main class="mx-auto max-w-4xl px-4 font-baumans mt-2">
+        <main class="mx-auto max-w-4xl flex-1 px-4 font-baumans mt-2">
             <div class="flex flex-col py-4">
                 <h1 class="text-3xl font-semibold">{post.data.title}</h1>
                 <p class="text-subtle">{post.data.description}</p>

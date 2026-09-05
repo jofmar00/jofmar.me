@@ -18,6 +18,11 @@ export default defineConfig({
           name: 'Baumans',
           cssVariable: '--baumans',
       },
+      {
+          provider: fontProviders.google(),
+          name: 'Sniglet',
+          cssVariable: '--sniglet',
+      },
 	],
   vite: {
     plugins: [tailwindcss()],

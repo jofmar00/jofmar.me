@@ -3,6 +3,8 @@
 
 @theme {
     --font-baumans: var(--baumans);
+    --font-sniglet: var(--sniglet);
+
 
     /* Monokai dark palette (https://monokai.pro) */
     --color-base: #272822;

@@ -8,6 +8,7 @@ interface SectionProps {
 
 const { route } = Astro.props as SectionProps;
 const title = t(route.TITLE, Astro.currentLocale);
+const description = t(route.DESCRIPTION, Astro.currentLocale);
 ---
 
 <div class="flex flex-col pt-8 mx-auto">
@@ -19,9 +20,9 @@ const title = t(route.TITLE, Astro.currentLocale);
             aria-label={title}
             transition:name={`icon-${route.URL}`}
         />
-        <div class="flex flex-col">
+        <div class="flex flex-col font-sniglet">
             <h1 class="text-2xl font-semibold" style={`color: ${route.COLOR}`}>{title}</h1>
-            {route.DESCRIPTION && <p>{t(route.DESCRIPTION, Astro.currentLocale)}</p>}
+            <p class="text-md">{description}</p>
         </div>
     </div>
 </div>

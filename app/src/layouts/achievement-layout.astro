@@ -33,7 +33,7 @@ const isNew = (Date.now() - achievement.data.date.getTime()) / (1000 * 60 * 60 *
         <slot></slot>
     </Lightbox>
     <div class="min-w-0 flex-1 flex flex-col items-center gap-1 text-center sm:items-start sm:text-left">
-        <h2 class="text-xl">{achievement.data.title}</h2>
+        <h2 class="text-xl font-sniglet">{achievement.data.title}</h2>
         <time datetime={date} class="text-lg text-[#FFB830]">
             {date}
         </time>

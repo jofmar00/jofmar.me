@@ -8,10 +8,9 @@ interface HeaderProps {
 
 const { path } = Astro.props as HeaderProps;
 ---
-<header class="font-baumans">
+<header class="font-sniglet">
     <h2 class="text-2xl p-5 flex gap-1 justify-center">
         <a href="/" class="hover:underline">{SITE.URL}</a>
         <a href={path} class="hover:underline">{path}</a>
     </h2>
-
 </header>

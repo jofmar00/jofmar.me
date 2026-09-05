@@ -8,12 +8,18 @@ interface Props {
 
 const { post } = Astro.props;
 const date = post.data.date.toLocaleDateString();
+const isNew = (Date.now() - post.data.date.getTime()) / (1000 * 60 * 60 * 24) <= 14;
 ---
 
 <a
     href={`/blog/${post.id}`}
-    class="group flex flex-col overflow-hidden rounded-lg bg-surface transition-colors hover:bg-overlay"
+    class="group flex relative flex-col rounded-lg bg-surface transition-colors hover:bg-overlay"
 >
+    {isNew && (
+        <span class="absolute -top-2 -right-2 z-10 rounded-full bg-red-500 px-1 text-lg leading-tight text-white rotate-12 ">
+            new!
+        </span>
+    )}
     <Image
         src={post.data.miniature}
         alt=""
@@ -23,9 +29,9 @@ const date = post.data.date.toLocaleDateString();
         class="aspect-video w-full object-cover"
         transition:name={`post-${post.id}`}
     />
-    <div class="flex flex-col items-center gap-2 p-3">
+    <div class="flex flex-row items-baseline gap-2 p-3">
         <h2 class="text-xl">{post.data.title}</h2>
-        <time datetime={date} class="text-md text-subtle">
+        <time datetime={date} class="text-md text-subtle ml-auto">
             {date}
         </time>
     </div>
