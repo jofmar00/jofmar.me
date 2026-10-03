@@ -3,7 +3,8 @@ import AchievementLayout from "@/layouts/achievement-layout.astro";
 import PageLayoutComponent from "@/layouts/page-layout.astro"
 import { getCollection, render } from "astro:content"
 
-const entries = await getCollection("achievements");
+const entries = (await getCollection("achievements"))
+    .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 const rendered = await Promise.all(entries.map(async (a) => ({
     entry: a,
     Content: (await render(a)).Content,

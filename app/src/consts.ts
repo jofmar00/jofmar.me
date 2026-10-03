@@ -23,7 +23,7 @@ export const ROUTES: Route[] = [
         COLOR: '#6DD4F0' ,
         URL: '/blog',
         ICON: '/icons/blog.svg',
-        NEW: true
+        NEW: false
     },
     {
         TITLE: { es: 'Logros', en: 'achievements' },
@@ -31,7 +31,7 @@ export const ROUTES: Route[] = [
         COLOR: '#FFB830' ,
         URL: '/achievements',
         ICON: '/icons/achievements.svg',
-        NEW: false
+        NEW: true
     },
     {
         TITLE: { es: 'Fotos', en: 'Photos' },
@@ -40,7 +40,7 @@ export const ROUTES: Route[] = [
         URL: '/photos',
         ICON: '/icons/camera.svg',
         HIDDEN: false,
-        NEW: true 
+        NEW: false
     },
     {
         TITLE: { es: 'Portafolio', en: 'portfolio' },

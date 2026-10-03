@@ -43,10 +43,9 @@ const quotes = defineCollection({
 
 const music = defineCollection({
     loader: glob({ base: "./src/content/music", pattern: "**/*.md" }),
-    schema: ({ image }) => z.object({
+    schema: () => z.object({
         title: z.string(),
         artist: z.string(),
-        miniature: image(),
         video: z.url(),
         date: z.coerce.date(),
         published: z.boolean().default(true),

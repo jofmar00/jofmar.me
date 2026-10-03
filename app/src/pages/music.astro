@@ -3,7 +3,8 @@ import PageLayoutComponent from "@/layouts/page-layout.astro";
 import SongLayout from "@/layouts/song-layout.astro";
 import { getCollection } from "astro:content";
 
-const entries = await getCollection("music");
+const entries = (await getCollection("music"))
+    .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 
 <PageLayoutComponent path="/music">
