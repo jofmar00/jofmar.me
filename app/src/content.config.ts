@@ -4,7 +4,7 @@ import { z } from "astro/zod";
 import { url } from "astro:schema";
 
 const blog = defineCollection({
-    loader: glob({ base: "./src/content/blog", pattern: "**/*.{md,mdx}" }),
+    loader: glob({ base: "./src/content/blog", pattern: ["**/*.{md,mdx}"] }),
     schema: ({ image }) => z.object({
         title: z.string(),
         miniature: image(),

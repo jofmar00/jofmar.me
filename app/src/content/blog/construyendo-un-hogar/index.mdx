@@ -5,10 +5,10 @@ date: 2026-09-05
 published: true
 miniature: ./miniature.jpg 
 ---
-import Lightbox from '@/components/lightbox.astro';
-import smash from "./smash.jpg";
-import bbq from "./bbq.jpg";
-import jardin from "./jardin.jpg";
+import PostImage from '@/components/post-image.astro';
+import smash from "./fotos/smash.jpg";
+import bbq from "./fotos/bbq.jpg";
+import jardin from "./fotos/jardin.jpg";
 import micasa from "../../achievements/moving\ out/miniature.jpg"
 
 Un mes ha pasado desde que embarqué en el avión que me trajo
@@ -32,12 +32,7 @@ Y la verdad que estoy bastante contento de como ha quedado el asunto, os dejo co
 una foto que saqué despues de colocar todo :) (Aviso a visitantes que esto no 
 siempre va a estar así de ordenado ajjaj)
 
-<figure class="mx-auto w-fit text-center">
-  <Lightbox id="micasa" image={micasa} class="mx-auto block w-fit" thumbnailClass="w-2xl max-w-full rounded-lg" thumbnailWidth={600}>
-    Mi casita :)
-  </Lightbox>
-  <figcaption>Mi casita :)</figcaption>
-</figure>
+<PostImage image={micasa} caption="Mi casita :)" />
 
 Por otra parte, y ya metiendonos más en lo personal, estoy conociendo a un montón
 de gente de lo más guay aquí. Aunque tenga el juego prácticamente abandonado, la primera semana 
@@ -57,12 +52,7 @@ de la comunidad del Smash tenían un simpatico banco debajo de la venue donde se
 donde se reunian a fumar porros en comunidad, que locura!! 
 Para los curiosos, yo no me animé a fumar, pero acabé quedando 2º en el torneo, asi que yo creo que worth it...
 
-<figure class="mx-auto w-fit text-center">
-  <Lightbox id="empezar-de-cero-munich" image={smash} alt="Munich" class="mx-auto block w-fit" thumbnailClass="w-2xl max-w-full rounded-lg" thumbnailWidth={600}>
-    Preparando el torneo
-  </Lightbox>
-  <figcaption> Preparando el torneo </figcaption>
-</figure>
+<PostImage image={smash} caption="Preparando el torneo" alt="Munich" />
 
 Dejando de lado el smash, también he conocido bastante gente a partir, tanto de la gente de la residencia 
 como de mis colegas que se quedarón en Alemania cuando yo volví a España. Con muchos de ellos, y por el día 
@@ -78,19 +68,11 @@ en España sin que nadie se preocupara en limpiarla, estoy seguro de que cuando 
 de bacon de la barbacoa de hace años esperando a que volviera jajaja. 
 Pero no os preocupeis, que se gestionó limpieza express ;)
 
-<figure class="mx-auto w-fit text-center">
-  <Lightbox id="bbq" image={bbq} class="mx-auto block w-fit" thumbnailClass="w-sm max-w-full rounded-lg" thumbnailWidth={600}>
-    Que rico bofff
-  </Lightbox>
-  <figcaption>Que rico bofff</figcaption>
-</figure>
+<PostImage image={bbq} caption="Que rico bofff" size="sm" />
 
 Como no se si quiero que este post se alargue mucho más creo que me gustaría cerrar diciendo que aunque haya 
 mucho trabajo detrás de estos primeros días está mereciendo completamente la pena por todo lo que la vida me está
 trayendo. Os dejo con una imagen del sitio desde el que estoy escribiendo el post, espero que os haya gustado y 
 gracias por llegar al final :) 
 
-<figure class="mx-auto w-fit text-center">
-  <Lightbox id="jardin" image={jardin} class="mx-auto block w-fit" thumbnailClass="w-sm max-w-full rounded-lg" thumbnailWidth={600}>
-  </Lightbox>
-</figure>
+<PostImage image={jardin} size="sm" />

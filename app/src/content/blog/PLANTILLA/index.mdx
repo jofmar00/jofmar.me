@@ -1,0 +1,30 @@
+---
+title: "Título del post"
+description: "Descripción breve del post"
+date: 2026-01-01
+published: false
+miniature: ./miniature.jpg
+---
+import PostImage from '@/components/post-image.astro';
+import Carousel from '@/components/carousel.astro';
+import miniature from './miniature.jpg';
+
+Párrafo de introducción. Puedes usar **negrita**, _cursiva_ y [enlaces](https://jofmar.me).
+
+<PostImage image={miniature} caption="Pie de foto" />
+
+> Cita o comentario destacado
+
+Otro párrafo de texto.
+
+{/* size: "sm" | "md" (por defecto) | "lg" */}
+<PostImage image={miniature} caption="Pie de foto" size="sm" />
+
+{/* images: imagen importada o { image, alt?, caption? } · size: "sm" | "md" (por defecto) | "lg" · loop: true (por defecto) | false */}
+<Carousel images={[
+    { image: miniature, caption: "Pie de foto 1" },
+    { image: miniature, caption: "Pie de foto 2" },
+    miniature,
+]} />
+
+Párrafo de cierre.
